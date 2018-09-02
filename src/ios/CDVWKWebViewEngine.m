@@ -150,6 +150,8 @@
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString * persistedPath = [userDefaults objectForKey:CDV_SERVER_PATH];
     if (persistedPath && ![persistedPath isEqualToString:@""]) {
+        persistedPath =  [persistedPath substringFromIndex:[persistedPath rangeOfString:@"/NoCloud"].location];
+        persistedPath = [[@"~/Library" stringByExpandingTildeInPath] stringByAppendingString:persistedPath];
         wwwPath = persistedPath;
     }
 
